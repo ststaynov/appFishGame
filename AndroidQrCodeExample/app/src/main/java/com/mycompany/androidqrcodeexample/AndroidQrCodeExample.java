@@ -27,9 +27,10 @@ public class AndroidQrCodeExample extends Activity {
     public void scanBar(View v) {
         try {
             //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-            Intent intent = new Intent(ACTION_SCAN);
-            intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
-            startActivityForResult(intent, 0);
+            Intent intent = new Intent();
+            //intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
+            startActivity(intent);
+            //startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
             //on catch, show the download dialog
             showDialog(AndroidQrCodeExample.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
@@ -79,8 +80,13 @@ public class AndroidQrCodeExample extends Activity {
                 //get the extras that are returned from the intent
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-                Toast toast = Toast.makeText(this, "Content:" + contents + " Format:" + format, Toast.LENGTH_LONG);
-                toast.show();
+
+                //open URL in browser
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contents));
+                startActivity(browserIntent);
+
+                //Toast toast = Toast.makeText(this, "Content:" + contents + " Format:" + format, Toast.LENGTH_LONG);
+                //toast.show();
             }
         }
     }
