@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.javacodegeeks.androidstartactivityforresultexample.ActivityOne"
-    android:background="@drawable/Bubbles"
+    android:background="@drawable/bubbles"
     >
 
 
@@ -42,10 +42,10 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:onClick="scanBar"
         android:text="Instructions"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:background="#061763"
         android:textColor="#ffffff">
     </Button>
+
 </LinearLayout>

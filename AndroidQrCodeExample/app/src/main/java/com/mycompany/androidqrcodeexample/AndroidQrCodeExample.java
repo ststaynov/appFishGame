@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.javacodegeeks.androidqrcodeexample.R;
@@ -16,26 +17,37 @@ public class AndroidQrCodeExample extends Activity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
 
+    public Button scanner2;
+
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set the main content layout of the Activity
         setContentView(R.layout.activity_main);
+        init();
+
     }
 
-    //product barcode mode
-    public void scanBar(View v) {
-        try {
-            //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-            Intent intent = new Intent();
-            //intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
-            startActivity(intent);
-            //startActivityForResult(intent, 0);
-        } catch (ActivityNotFoundException anfe) {
-            //on catch, show the download dialog
-            showDialog(AndroidQrCodeExample.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
-        }
+    public void init(){
+        scanner2= (Button)findViewById(R.id.scanner2);
+        scanner2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent toy = new Intent(AndroidQrCodeExample.this,Instruction.class);
+
+                startActivity(toy);
+            }
+        });
     }
+
+
+
+
 
     //product qr code mode
     public void scanQR(View v) {
@@ -49,6 +61,14 @@ public class AndroidQrCodeExample extends Activity {
             showDialog(AndroidQrCodeExample.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
         }
     }
+
+//    public void Instructions(View v) {
+//
+//        Intent toy = new Intent(AndroidQrCodeExample.this,Instruction.class);
+//
+//        startActivity(toy);
+//    }
+
 
     //alert dialog for downloadDialog
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
